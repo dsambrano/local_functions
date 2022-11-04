@@ -1,6 +1,6 @@
 # My local functions
 
-Here are a list of functions and programs that I have made, that are not available to the general public (mostly just because I am to lazy to set upp the repos in pip etc).
+Here are a list of functions and programs that I have made, that are not available to the general public (mostly just because I am to lazy to set up the repos in pip etc).
 
 I plan to make several functions here and you may or may not want all of them.
 For those that want them all, the `install.sh` script should work.
