@@ -26,6 +26,7 @@ change_gnome_wallpaper() {
 }
 
 change_macos_wallpaper() {
+    # https://lifehacker.com/set-your-macs-wallpaper-with-a-terminal-command-1728551470
     # Needs to be checked to see if I can replace single quotes so I can expand param else will need to use eval probably.
     osascript -e 'tell application "Finder" to set desktop picture to POSIX file "$pic"'
 }
