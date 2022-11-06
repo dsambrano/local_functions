@@ -3,7 +3,6 @@
 from pathlib import Path
 import random
 import re
-
 import pywal
 
 ALACRITTY_CONFIG = Path.home() / Path(".config/alacritty/alacritty.yml")
