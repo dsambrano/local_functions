@@ -5,7 +5,7 @@ import random
 import re
 import pywal
 
-ALACRITTY_CONFIG = Path("~/.config/alacritty/alacritty.yml").resolve()
+ALACRITTY_CONFIG = Path("~/.config/alacritty/alacritty.yml").expanduser()
 THEMES_DIR = ALACRITTY_CONFIG.parent / Path("themes/")
 THEME_TEXT = "~/.config/alacritty/themes/"  # Unique Pattern Inside alacritty config
 
@@ -81,9 +81,9 @@ def main() -> None:
     old_pattern = rf"({THEME_TEXT})(.*)(.yml)"
 
     # Set Variables
-    export_file = Path("~/.config/alacritty/themes/pywal.yml").resolve()
-    template = Path("~/.config/wal/templates/colors-alacritty.yml").resolve()
-    wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers").resolve()
+    export_file = Path("~/.config/alacritty/themes/pywal.yml").expanduser()
+    template = Path("~/.config/wal/templates/colors-alacritty.yml").expanduser()
+    wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers").expanduser()
 
     # Randomly select a Wallpaper from dir
     wallpaper = random_wallpaper(wallpapers_dir)
