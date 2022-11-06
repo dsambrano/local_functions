@@ -1,0 +1,5 @@
+setup.py
+rice.egg-info/PKG-INFO
+rice.egg-info/SOURCES.txt
+rice.egg-info/dependency_links.txt
+rice.egg-info/top_level.txt

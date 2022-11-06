@@ -3,7 +3,7 @@ import sys
 import pywal
 
 
-WALLPAPER = Path.home() / Path("git_repos/dotfiles/wallpapers") / Path("generic/deer_sunset_blue.jpg")
+WALLPAPER = Path.home() / Path("git_repos/dotfiles/wallpapers") / Path("generic/macos_monterey_shapes_hd_macos-2560x1440.jpg")
 if not WALLPAPER.exists():
     print("Typo you dunce")
     print(WALLPAPER)

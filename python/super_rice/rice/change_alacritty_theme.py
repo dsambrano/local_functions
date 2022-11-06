@@ -39,7 +39,7 @@ def generate_pywall_theme(wallpaper: Path, template: Path, export_file: Path) ->
     Generate a Pywall theme based on Wallpaper and Pywall Template.
 
     Args:
-        wallpaper (Path): TODO
+        wallpaper (Path): A Path to wallpaper
         template (Path): Pywall Template locaiton
         export_file (Path): Pywall theme export locaiton
 
@@ -57,6 +57,11 @@ def regex_config(config: Path, new_pattern: str, old_pattern: str, **kwargs) -> 
 
     Updates the Config File based on Regex Pattern provided.
 
+    Args:
+        config (Path): A Path for a config file to be altered
+        new_pattern (str): A string or regex to replace old_pattern
+        old_pattern (str): A string or regex to be replaced
+
     Returns: None, but edits file destructively.
 
     """
@@ -68,16 +73,19 @@ def regex_config(config: Path, new_pattern: str, old_pattern: str, **kwargs) -> 
         f.write(new_content)
 
 
-def main() -> None:
+def main(wallpaper: Path) -> None:
     """Main
 
     Update the Alacritty Config to A Random theme.
+
+    Args:
+        wallpaper (Path): A Path to wallpaper
 
     Returns: None
 
     """
     # Set Regex patterns
-    new_pattern = rf"\1pywall\3"
+    new_pattern = rf"\1pywal\3"
     old_pattern = rf"({THEME_TEXT})(.*)(.yml)"
 
     # Set Variables
@@ -86,11 +94,12 @@ def main() -> None:
     wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers").expanduser()
 
     # Randomly select a Wallpaper from dir
-    wallpaper = random_wallpaper(wallpapers_dir)
+    if not wallpaper:
+        wallpaper = random_wallpaper(wallpapers_dir)
 
     # Generate Pywall theme based on wallpaper
     generate_pywall_theme(wallpaper, template, export_file)
-    _random = False if "dragon" in wallpaper.parts[-2].lower() else True
+    _random = True if "dragon" in wallpaper.parts[-2].lower() else False
 
     if _random:
         # Get a Random Theme
@@ -102,4 +111,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers").expanduser()
+    wallpaper = random_wallpaper(wallpapers_dir)
+    main(wallpaper)
