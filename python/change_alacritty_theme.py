@@ -78,12 +78,8 @@ def main() -> None:
     Returns: None
 
     """
-
-    # Get a Random Theme
-    theme = random_theme()
-
     # Set Regex patterns
-    new_pattern = rf"\1{theme}\3"
+    new_pattern = rf"\1pywall\3"
     old_pattern = rf"({THEME_TEXT})(.*)(.yml)"
 
     # Set Variables
@@ -97,6 +93,12 @@ def main() -> None:
 
     # Generate Pywall theme based on wallpaper
     generate_pywall_theme(wallpaper, template, export_file)
+    _random = False if "dragon" in wallpaper.parts[-2].lower() else True
+
+    if _random:
+        # Get a Random Theme
+        theme = random_theme()
+        new_pattern = rf"\1{theme}\3"
 
     # Edit Alacritty config file
     regex_config(ALACRITTY_CONFIG, new_pattern, old_pattern, count=1)
