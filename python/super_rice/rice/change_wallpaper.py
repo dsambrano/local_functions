@@ -23,6 +23,8 @@ def get_os() -> OS:
 
     long_os = re.match(r'NAME="(.*)"', content).groups()[0]
     os = OS(long_os)
+    # Get current DE: https://tecadmin.net/detect-the-desktop-environment-in-linux-command-line/
+    # echo $XDG_CURRENT_DESKTOP
     return os
 
 
