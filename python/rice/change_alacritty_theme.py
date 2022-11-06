@@ -20,16 +20,17 @@ def random_theme() -> str:
 
 
 # Probably changed to random_path_item and merged with above
-def random_wallpaper(wallpapers: list[Path]) -> Path:
+def random_wallpaper(wallpapers_dir: Path) -> Path:
     """TODO: Docstring for random_wallpaper.
 
     Args:
-        wallpapers (lst): List of Wallpapers that can be randomly selected
+        wallpapers_dir (Path): A Path Directory
 
     Returns: A path for a single wallpaper
 
     """
 
+    wallpapers = [x for x in wallpapers_dir.rglob("*.jpg")]
     return wallpapers[random.randint(0, len(wallpapers) - 1)]
 
 
@@ -85,8 +86,7 @@ def main() -> None:
     wallpapers_dir = Path.home() / Path("git_repos/dotfiles/wallpapers")
 
     # Randomly select a Wallpaper from dir
-    wallpapers = [x for x in wallpapers_dir.rglob("*.jpg")]
-    wallpaper = random_wallpaper(wallpapers)
+    wallpaper = random_wallpaper(wallpapers_dir)
 
     # Generate Pywall theme based on wallpaper
     generate_pywall_theme(wallpaper, template, export_file)
