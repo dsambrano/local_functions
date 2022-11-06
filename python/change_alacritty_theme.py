@@ -44,15 +44,15 @@ def main() -> None:
 
     """
 
-    themes = [themes.stem for themes in THEMES_DIR.iterdir()]
-    new_pattern = rf"\1{themes[random.randint(0, len(themes) - 1)]}\3"
-    full_pattern = rf"({THEME_TEXT})(.*)(.yml)"
-    with ALACRITTY_CONFIG.open("r") as f:
-        content = f.read()
-        new_content = re.sub(full_pattern, new_pattern, content, count=1)
+    # Get a Random Theme
+    theme = random_theme()
 
-    with ALACRITTY_CONFIG.open("w") as f:
-        f.write(new_content)
+    # Set Regex patterns
+    new_pattern = rf"\1{theme}\3"
+    old_pattern = rf"({THEME_TEXT})(.*)(.yml)"
+
+    # Edit Alacritty config file
+    regex_config(ALACRITTY_CONFIG, new_pattern, old_pattern, count=1)
 
 
 if __name__ == "__main__":
