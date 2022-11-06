@@ -16,8 +16,7 @@ def random_theme() -> str:
 
     """
     themes = [themes.stem for themes in THEMES_DIR.iterdir()]
-    theme = themes[random.randint(0, len(themes) - 1)]
-    return theme
+    return themes[random.randint(0, len(themes) - 1)]
 
 
 # Probably changed to random_path_item and merged with above
@@ -31,8 +30,7 @@ def random_wallpaper(wallpapers: list[Path]) -> Path:
 
     """
 
-    wallpaper = wallpapers[random.randint(0, len(wallpapers) - 1)]
-    return wallpaper
+    return wallpapers[random.randint(0, len(wallpapers) - 1)]
 
 
 def generate_pywall_theme(wallpaper: Path, template: Path, export_file: Path) -> None:
