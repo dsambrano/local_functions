@@ -27,3 +27,5 @@ def main() -> None:
     with ALACRITTY_CONFIG.open("w") as f:
         f.write(new_content)
 
+if __name__ == "__main__":
+    main()
