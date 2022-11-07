@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+#
+#
+# Adapted from: https://opensource.com/article/19/12/help-bash-program and SO
+
+#git clone git@github.com:$1.git
+
+Help() {
+   # Display Help
+   echo "The Clone Function Allows you to Clone A Git Repo with Shorthand."
+   echo "So instead of typing the full git clone ... you can just type"
+   echo
+   echo "clone user/repo_name"
+   echo
+   echo "This prevent you from needed to remember the git@github.com... nonsense"
+   echo "By Default, it uses SSH connection but can be adjust with an option"
+   echo
+   echo "Script Options [-h|-H|-g]"
+   echo "options:"
+   echo "h     Print this Help."
+   echo "H     Uses HTTPS connection"
+   echo "g     Uses GitHub CLI Tool"
+   echo
+}
+
+clone_ssh() {
+    git clone git@github.com:$1.git
+}
+
+clone_https(){
+    git clone https://github.com/$1.git
+}
+
+clone_gh(){
+    gh repo clone $1
+}
+
+# For a simple Help example: https://opensource.com/article/19/12/help-bash-program
+# For examples of getopts: https://stackoverflow.com/questions/16483119/an-example-of-how-to-use-getopts-in-bash
+# Get the options
+while getopts ":H:g:h" option; do
+   case $option in
+      H) # Use HTTPS Protocol
+         clone_https $1
+         exit;;
+      g) # Use GH Protocol
+         clone_gh $1
+         exit;;
+      h | *) # display Help on h or invalid option
+         Help
+         exit;;
+     #\?) # incorrect option
+     #    echo "Error: Invalid option"
+     #    exit;;
+   esac
+done
+# For details: https://unix.stackexchange.com/a/214151
+shift $((OPTIND - 1))
+
+clone_ssh $1
