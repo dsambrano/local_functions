@@ -32,6 +32,7 @@ def main() -> None:
     wallpaper = random_wallpaper(wallpapers_dir)
 
     from rice import change_wallpaper
+
     change_wallpaper.main(wallpaper)
     os = change_wallpaper.get_os()
     change_wallpaper = change_wallpaper.get_wallpaper_function(os)
@@ -39,7 +40,9 @@ def main() -> None:
 
     # Running Second because of animation for wallpaper
     from rice import change_alacritty_theme
+
     change_alacritty_theme.main(wallpaper)
+
 
 if __name__ == "__main__":
     main()
