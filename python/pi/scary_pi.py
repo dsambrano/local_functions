@@ -17,10 +17,10 @@ import subprocess
 
 
 # CONSTANCES
-RELAY_PIN = 37
-MOTION_PIN = 35
-VIDEO_DIR = Path("videos")
-AUDIO = Path("zombie_scream.ogg")
+RELAY_PIN: int = 37
+MOTION_PIN: int = 35
+VIDEO_DIR: Path = Path("videos")
+AUDIO: Path = Path("zombie_scream.ogg")
 
 # Initialize GPIO
 GPIO.setmode(GPIO.BOARD)
