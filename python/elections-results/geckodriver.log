@@ -1,0 +1,74 @@
+1668195207899	geckodriver	INFO	Listening on 127.0.0.1:43755
+1668195207928	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "45483" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileqRhn5b"
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1668195208219	Marionette	INFO	Marionette enabled
+1668195208221	Marionette	INFO	Listening on port 35709
+Read port: 35709
+WebDriver BiDi listening on ws://127.0.0.1:45483
+1668195208287	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileqRhn5b/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:45483/devtools/browser/bc6d9daa-7c3b-4ed8-ae22-570a49b5d518
+1668195500959	geckodriver	INFO	Listening on 127.0.0.1:56227
+1668195501490	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "48835" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileZ9T92p"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1668195501770	Marionette	INFO	Marionette enabled
+1668195501773	Marionette	INFO	Listening on port 34159
+Read port: 34159
+WebDriver BiDi listening on ws://127.0.0.1:48835
+1668195501858	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileZ9T92p/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:48835/devtools/browser/30f4c26e-1423-4500-9570-94a916215053
+JavaScript warning: https://pagead2.googlesyndication.com/bg/api979c0EJY6QQNrS8TSWwgKrshdt-vRMqEtOqF-hYY.js line 2 > eval line 2281 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1668195536498	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1668195536510	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1668195537571	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1668195539806	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1668195815754	Marionette	INFO	Stopped listening on port 34159
+1668196138621	geckodriver	INFO	Listening on 127.0.0.1:35441
+1668196138651	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "50693" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileV3HwmZ"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1668196138836	Marionette	INFO	Marionette enabled
+1668196138838	Marionette	INFO	Listening on port 44785
+Read port: 44785
+WebDriver BiDi listening on ws://127.0.0.1:50693
+1668196138893	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileV3HwmZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:50693/devtools/browser/eab8fc44-e36b-4a3d-b74d-dff6648f8f64
+JavaScript error: https://micro.rubiconproject.com/prebid/dynamic/14764.js?page_type=interactives, line 2: TypeError: googletag.pubads is not a function
+1668196146579	Marionette	INFO	Stopped listening on port 44785
+1668197557213	geckodriver	INFO	Listening on 127.0.0.1:59909
+1668197557744	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "38659" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile6rW417"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1668197557940	Marionette	INFO	Marionette enabled
+1668197557942	Marionette	INFO	Listening on port 38947
+Read port: 38947
+WebDriver BiDi listening on ws://127.0.0.1:38659
+1668197557997	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile6rW417/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:38659/devtools/browser/3afd32fa-abfe-49ca-aa2e-a8a52d72bf58
+JavaScript warning: https://pagead2.googlesyndication.com/bg/api979c0EJY6QQNrS8TSWwgKrshdt-vRMqEtOqF-hYY.js line 2 > eval line 2257 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1668197570615	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1668198821074	Marionette	INFO	Stopped listening on port 38947
+1668200063357	Marionette	INFO	Stopped listening on port 35709
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1668210696787	geckodriver	INFO	Listening on 127.0.0.1:38243
+1668210696837	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--remote-debugging-port" "40759" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileUiyZKK"
+*** You are running in headless mode.
+[GFX1-]: glxtest: VA-API test failed: failed to initialise VAAPI connection.
+1668210697041	Marionette	INFO	Marionette enabled
+1668210697044	Marionette	INFO	Listening on port 44873
+WebDriver BiDi listening on ws://127.0.0.1:40759
+Read port: 44873
+1668210697239	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileUiyZKK/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:40759/devtools/browser/50c0e7a8-153a-4834-8c4a-d36ad7256b99
+JavaScript error: https://micro.rubiconproject.com/prebid/dynamic/14764.js?page_type=interactives, line 2: TypeError: googletag.pubads is not a function
+1668210704799	Marionette	INFO	Stopped listening on port 44873
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
