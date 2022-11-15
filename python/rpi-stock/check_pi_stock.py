@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup, ResultSet
 COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
 BASE_URL = sites.BASE_URL
-check_companies = ["microcenter"]
+check_companies = ["microcenter", "adafruit"]
 
 
 def get_product_pages(product, company) -> str:

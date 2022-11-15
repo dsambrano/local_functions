@@ -87,3 +87,8 @@ class MicrocenterInventory(Inventory):
     cookies = {"storeSelected": "101"}  # 101 is CA; 121 is MA
 
 
+class AdafruitInventory(Inventory):
+    class_ = None
+    attrs = {"itemprop": "availability"}
+    sold_out_text: str = "Out of stock"
+    in_stock_text: str = "In stock"
