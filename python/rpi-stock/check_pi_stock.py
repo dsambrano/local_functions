@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
 
+import time
 import sites
-import requests
 import logging
-
-from bs4 import BeautifulSoup, ResultSet
 
 COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
@@ -13,11 +11,12 @@ BASE_URL = sites.BASE_URL
 check_companies = ["microcenter", "adafruit"]
 
 
-def get_product_pages(product, company) -> str:
-    """TODO: Docstring for get_product_pages.
+def get_product_pages(product:str, company:str) -> str:
+    """get_product_pages: Docstring for get_product_pages.
 
     Args:
-        product (TODO): TODO
+        product (str): Product key to be used for Unique Endpoint
+        company (str): Company key to be used for Company Website
 
     Returns: (str) a URL for a company
 
@@ -25,13 +24,8 @@ def get_product_pages(product, company) -> str:
     return f"{BASE_URL[company]}{PRODUCTS[product][company]}"
 
 
-def microcenter_inventory(soup: BeautifulSoup) -> ResultSet:
-    """TODO: Docstring for microcenter_inventory.
 
-    Args:
-        soup (BeautifulSoup): A BeautifulSoup parser
-
-    Returns: TODO
+    Returns: Creates log indicating Product Stock for Each Vender
 
     """
     # SOLD_OUT_TEXT = "SOLD OUT"
