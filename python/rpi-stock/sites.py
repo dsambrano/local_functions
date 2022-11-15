@@ -19,7 +19,7 @@ BASE_URL = {
 PRODUCTS = {
     "pi 3": {
         "microcenter": "460968/raspberry-pi-3-model-b",
-        "adafruit": "3305",
+        "adafruit": "3055",
     },
     "pi 4 1GB": {
         "adafruit": "4295",
