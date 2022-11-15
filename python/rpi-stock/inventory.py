@@ -10,6 +10,8 @@ class Inventory(ABC):
 
     sold_out_text: str
     in_stock_text: str
+    class_: str | None  # Should probs combine with below to query and be a dictionary, **kwargs used in check and remove the versions
+    attr: dict | None
 
     def common(self):
         """common function that works for all the Inerited classes"""
@@ -17,32 +19,44 @@ class Inventory(ABC):
         print("common method")
         pass
 
-    @abstractmethod
-    def check_inventory(self, soup: BeautifulSoup) -> ResultSet:
-        pass
-
-
-class MicrocenterInventory(Inventory):
-    sold_out_text: str = "SOLD OUT"
-    in_stock_text: str = "IN STOCK"
-    # Should probably initalize with a BS object and create soup object from parser
-    # Alternatively, initalize with soup object so there are options here
-
-    def check_inventory(self, soup: BeautifulSoup) -> str | None:
+    def check_inventory_attr(self) -> str | None:
         """check_inventory takes a BeautifulSoup object and returns the section
         describing the Stock Inventory Levels
 
-        Args:
-            soup (BeautifulSoup): A BeautifulSoup parser for a product page
-
-        Returns: (ResultSet) containing the text describing stock levels.
+        Returns: (Text) containing the text describing stock levels.
 
         """
-        inventory_text = soup.find(class_="inventory")
+        inventory_text = self.soup.find(attr=self.attr)
         if not inventory_text:
             return None
 
         return inventory_text.text
+
+    def check_inventory_class(self) -> str | None:
+        """check_inventory takes a BeautifulSoup object and returns the section
+        describing the Stock Inventory Levels
+
+        Returns: (Text) containing the text describing stock levels.
+
+        """
+        inventory_text = self.soup.find(class_=self.class_)
+        if not inventory_text:
+            return None
+
+        return inventory_text.text
+
+
+    def check_inventory(self) -> str | None:
+        """check_inventory takes a BeautifulSoup object and returns the section
+        describing the Stock Inventory Levels
+
+        Returns: (Text) containing the text describing stock levels.
+
+        """
+        if not self.class_:
+            return self.check_inventory_attr()
+
+        return self.check_inventory_class()
 
     @property
     def in_stock(self) -> bool | None:
