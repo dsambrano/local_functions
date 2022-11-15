@@ -10,8 +10,18 @@ class Inventory(ABC):
 
     sold_out_text: str
     in_stock_text: str
+    cookies: dict | None = None
     class_: str | None  # Should probs combine with below to query and be a dictionary, **kwargs used in check and remove the versions
     attr: dict | None
+
+    def get_page(self, site):
+        """TODO: Docstring for get_page.
+
+        Returns: TODO
+
+        """
+        response = requests.get(site, cookies=self.cookies)
+        self.soup = BeautifulSoup(response.content, "html5lib")
 
     def common(self):
         """common function that works for all the Inerited classes"""
