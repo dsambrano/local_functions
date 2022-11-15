@@ -10,6 +10,12 @@ class Inventory(ABC):
     sold_out_text: str
     in_stock_text: str
 
+    def common(self):
+        """common function that works for all the Inerited classes"""
+        # https://www.integralist.co.uk/posts/python-code-design/
+        print("common method")
+        pass
+
     @abstractmethod
     def check_inventory(self, soup: BeautifulSoup) -> ResultSet:
         pass
