@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
 from abc import ABC, abstractmethod
-from bs4 import BeautifulSoup, ResultSet
+from bs4 import BeautifulSoup
+import requests
+
 # Check out: https://realpython.com/factory-method-python/#a-general-purpose-object-factory
 
 
@@ -70,9 +72,9 @@ class Inventory(ABC):
 
     @property
     def in_stock(self) -> bool | None:
-        # inventory_text = self.check_inventory()
-        # if not inventory_text:
-        #    return None
-        # stock = None if sold_out_text in inventory_text else False
-        stock = False
+        inventory_text = self.check_inventory()
+        if not inventory_text:
+            return None
+        stock = None if self.sold_out_text not in inventory_text else False
+        stock = stock if self.in_stock_text not in inventory_text else True
         return stock
