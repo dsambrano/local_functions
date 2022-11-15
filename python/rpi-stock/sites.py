@@ -8,6 +8,8 @@ COMPANIES = [
     "cana",
 ]
 
+SCRAPPERS = ["https://rpilocator.com/?country=US"]
+
 BASE_URL = {
     "microcenter": "https://www.microcenter.com/product/",
     "adafruit": "https://www.adafruit.com/product/",
