@@ -2,6 +2,7 @@
 
 from abc import ABC, abstractmethod
 from bs4 import BeautifulSoup, ResultSet
+# Check out: https://realpython.com/factory-method-python/#a-general-purpose-object-factory
 
 
 class Inventory(ABC):
