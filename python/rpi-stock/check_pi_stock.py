@@ -24,25 +24,26 @@ def get_product_pages(product:str, company:str) -> str:
     return f"{BASE_URL[company]}{PRODUCTS[product][company]}"
 
 
+def main():
+    """main Check Raspberry Pi Stock at various Venders
 
     Returns: Creates log indicating Product Stock for Each Vender
 
     """
-    # SOLD_OUT_TEXT = "SOLD OUT"
-    # IN_STOCK_TEXT = "IN STOCK"
-    return soup.find_all(class_="inventory")
+    products = [key for key in PRODUCTS]
+    product = products[0]
+    for product in PRODUCTS:
+        # Probably Good enough since I really don't expect the same site for multiple
+        time.sleep(3)  # Prevent issues of Rate Limiting
+        for company in product:
+            if company not in check_companies:
+                logging.info(f"Skipping {company}")
+                continue
+            logging.info(f"Checking Data from {product} at {company}")
+            site = get_product_pages(product, company)
+            print(site)  # Need to figure out a way to call the right Class from here
 
 
-products = [key for key in PRODUCTS]
-product = products[0]
-product_pages = [
-    (key, get_product_pages(product, key))
-    for key in PRODUCTS[product]
-    if key in check_companies
-]
 
-for company, site in product_pages:
-    logging.info(f"Checking Data from {product} at {company}")
-    response = requests.get(site)
-    soup = BeautifulSoup(response.content, "html5lib")
-    # soup.find_all(class_ = "inventory") Only for Microcenter
+if __name__ == "__main__":
+    main()
