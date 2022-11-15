@@ -78,3 +78,12 @@ class Inventory(ABC):
         stock = None if self.sold_out_text not in inventory_text else False
         stock = stock if self.in_stock_text not in inventory_text else True
         return stock
+
+
+class MicrocenterInventory(Inventory):
+    class_: str = "inventory"
+    sold_out_text: str = "SOLD OUT"
+    in_stock_text: str = "IN STOCK"
+    cookies = {"storeSelected": "101"}  # 101 is CA; 121 is MA
+
+
