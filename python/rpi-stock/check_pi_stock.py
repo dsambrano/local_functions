@@ -8,6 +8,7 @@ import logging
 COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
 BASE_URL = sites.BASE_URL
+SCRAPPERS = sites.SCRAPPERS
 check_companies = ["microcenter", "adafruit"]
 
 
@@ -17,7 +18,7 @@ def get_product_pages(product:str, company:str) -> str:
     Args:
         product (str): Product key to be used for Unique Endpoint
         company (str): Company key to be used for Company Website
-
+ 
     Returns: (str) a URL for a company
 
     """
@@ -30,6 +31,8 @@ def main():
     Returns: Creates log indicating Product Stock for Each Vender
 
     """
+    for scrapper in SCRAPPERS:
+        pass
     products = [key for key in PRODUCTS]
     product = products[0]
     for product in PRODUCTS:
