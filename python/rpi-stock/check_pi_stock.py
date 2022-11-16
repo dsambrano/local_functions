@@ -4,13 +4,16 @@
 import time
 import sites
 import logging
+import inventory
 
 COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
 BASE_URL = sites.BASE_URL
 SCRAPPERS = sites.SCRAPPERS
-check_companies = ["microcenter", "adafruit"]
+exclude_companies = []
 
+
+logging.basicConfig(level=logging.WARNING)
 
 def get_product_pages(product:str, company:str) -> str:
     """get_product_pages: Docstring for get_product_pages.
@@ -33,18 +36,30 @@ def main():
     """
     for scrapper in SCRAPPERS:
         pass
-    products = [key for key in PRODUCTS]
-    product = products[0]
     for product in PRODUCTS:
         # Probably Good enough since I really don't expect the same site for multiple
         time.sleep(3)  # Prevent issues of Rate Limiting
-        for company in product:
-            if company not in check_companies:
+        for company in PRODUCTS[product]:
+            # if company in exclude_companies:
+            if company != "microcenter":
                 logging.info(f"Skipping {company}")
                 continue
             logging.info(f"Checking Data from {product} at {company}")
+
+            # Checking Stock
+            stock_checker = inventory.MicrocenterInventory()
             site = get_product_pages(product, company)
-            print(site)  # Need to figure out a way to call the right Class from here
+            stock_checker.get_page(site)
+            stock = stock_checker.in_stock
+
+            # Logging Stock Status
+            if stock is None:
+                print(f"Stock Status Unknown. Manually Check: {site}")
+                continue
+            article = "is" if stock else "is not"
+            stock_text = f"{product} {article} in stock at {company}"
+            stock_text = f"{stock_text}: {site}" if stock else stock_text
+            print(stock_text)
 
 
 
