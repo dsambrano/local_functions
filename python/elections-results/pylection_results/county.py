@@ -25,9 +25,10 @@ content = browser.find_elements(By.CSS_SELECTOR, ".styles_container__u2WsS")[0].
 browser.quit()
 for x in content.split("\n"):
     if re.match(r"[a-zA-Z0-9_ ]* (County|City)", x):
+        pass
 
 #counties = re.findall(r"\w+ County", content)
-counties = = [x for x in content.split("\n") if re.match(r"[a-zA-Z0-9_ ]* (County|City).*", x)]
+counties = [x for x in content.split("\n") if re.match(r"[a-zA-Z0-9_ ]* (County|City).*", x)]
 table = re.split(r"[a-zA-Z0-9_ ]* [(County|City)].*", content)
 #table = re.split(r"\n[a-zA-Z0-9_ ]* County", content)
 header, county_data = table[0], table[1:]
@@ -59,4 +60,3 @@ class County():
         """TODO: to be defined. """
         super.__init__(self)
 
-        Docstring for County. or
