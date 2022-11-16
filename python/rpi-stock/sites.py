@@ -25,20 +25,20 @@ PRODUCTS = {
     },
     "pi 4 1GB": {
         "adafruit": "4295",
-        "chicago": "craspberry-pi-4-model-b-1gb",
+        "chicago": "raspberry-pi-4-model-b-1gb",
         "pishop": "raspberry-pi-4-model-b-1gb/",
         "cana": "raspberry-pi-4.html",
     },
     "pi 4 2GB": {
         "microcenter": "621439/raspberry-pi-4-model-b-2gb-ddr4",
         "adafruit": "4292",
-        "chicago": "craspberry-pi-4-model-b-2gb",
+        "chicago": "raspberry-pi-4-model-b-2gb",
         "pishop": "raspberry-pi-4-model-b-2gb/",
         "cana": "raspberry-pi-4-2gb.html",
     },
     "pi 4 4GB": {
         "adafruit": "4296",
-        "chicago": "craspberry-pi-4-model-b-4gb",
+        "chicago": "raspberry-pi-4-model-b-4gb",
         "pishop": "raspberry-pi-4-model-b-4gb/",
         "cana": "raspberry-pi-4-4gb.html",
     },
