@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
-from abc import ABC, abstractmethod
+from abc import ABC
 from bs4 import BeautifulSoup
 import requests
 
 # Check out: https://realpython.com/factory-method-python/#a-general-purpose-object-factory
+# Info on Common functions: https://www.integralist.co.uk/posts/python-code-design/
 
 
 class Inventory(ABC):
@@ -24,12 +25,6 @@ class Inventory(ABC):
         """
         response = requests.get(site, cookies=self.cookies)
         self.soup = BeautifulSoup(response.content, "html5lib")
-
-    def common(self):
-        """common function that works for all the Inerited classes"""
-        # https://www.integralist.co.uk/posts/python-code-design/
-        print("common method")
-        pass
 
 
     def check_inventory(self) -> str | None:
