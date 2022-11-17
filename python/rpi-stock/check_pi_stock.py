@@ -29,7 +29,7 @@ def get_product_pages(base_url: str, endpoint: str) -> str:
     return f"{base_url}{endpoint}"
 
 
-def update_summary(summary: dict[str, list], product: str, company: str) -> None:
+def update_summary(summary: dict[str, str], product: str, company: str) -> None:
     """update_summary appends vender to product list
 
     Args:
@@ -38,11 +38,11 @@ def update_summary(summary: dict[str, list], product: str, company: str) -> None
     Returns: None, Inplace changes on summary dictionary
 
     """
-    company_list = summary.get(product, None)
-    if company_list is None:
-        summary.update({product: [company]})
+    companies = summary.get(product, None)
+    if companies is None:
+        summary.update({product: company})
     else:
-        summary.update({product: company_list + [company]})
+        summary.update({product: f"{companies} and {company}"})
 
 
 def summary_text(summary: dict[str, list]) -> None:
@@ -55,6 +55,7 @@ def summary_text(summary: dict[str, list]) -> None:
     Returns: None, prints results
 
     """
+    # companies_str = " and ".join([vender for vender in companies])
     text = [
         f"{product} is in stock at {companies}"
         for product, companies in summary.items()
