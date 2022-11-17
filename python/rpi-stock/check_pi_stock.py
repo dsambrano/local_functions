@@ -15,17 +15,52 @@ exclude_companies = []
 
 logging.basicConfig(level=logging.WARNING)
 
-def get_product_pages(product:str, company:str) -> str:
+
+def get_product_pages(product: str, company: str) -> str:
     """get_product_pages: Docstring for get_product_pages.
 
     Args:
         product (str): Product key to be used for Unique Endpoint
         company (str): Company key to be used for Company Website
- 
+
     Returns: (str) a URL for a company
 
     """
     return f"{BASE_URL[company]}{PRODUCTS[product][company]}"
+
+
+def update_summary(summary: dict[str, list], product: str, company: str) -> None:
+    """update_summary appends vender to product list
+
+    Args:
+        summary (dict[str, list]): A Dict to be updated
+
+    Returns: None, Inplace changes on summary dictionary
+
+    """
+    company_list = summary.get(product, None)
+    if company_list is None:
+        summary.update({product: [company]})
+    else:
+        summary.update({product: company_list + [company]})
+
+
+def summary_text(summary: dict[str, list]) -> None:
+    """TODO: Docstring for summary_text.
+
+    Args:
+        summary (dict): A Dictionary of products listing each vender for which
+        it is in stock
+
+    Returns: None, prints results
+
+    """
+    text = [
+        f"{product} is in stock at {companies}"
+        for product, companies in summary.items()
+    ]
+    for prod_text in text:
+        print(prod_text)
 
 
 def main():
@@ -34,6 +69,7 @@ def main():
     Returns: Creates log indicating Product Stock for Each Vender
 
     """
+    summary = {}
     for scrapper in SCRAPPERS:
         pass
     for product in PRODUCTS:
@@ -51,6 +87,8 @@ def main():
             site = get_product_pages(product, company)
             stock_checker.get_page(site)
             stock = stock_checker.in_stock
+            if stock:
+                update_summary(summary, product, company)
 
             # Logging Stock Status
             if stock is None:
@@ -60,7 +98,7 @@ def main():
             stock_text = f"{product} {article} in stock at {company}"
             stock_text = f"{stock_text}: {site}" if stock else stock_text
             print(stock_text)
-
+    summary_text(summary)
 
 
 if __name__ == "__main__":
