@@ -16,7 +16,7 @@ exclude_companies = []
 logging.basicConfig(level=logging.WARNING)
 
 
-def get_product_pages(product: str, company: str) -> str:
+def get_product_pages(base_url: str, endpoint: str) -> str:
     """get_product_pages: Docstring for get_product_pages.
 
     Args:
@@ -26,7 +26,7 @@ def get_product_pages(product: str, company: str) -> str:
     Returns: (str) a URL for a company
 
     """
-    return f"{BASE_URL[company]}{PRODUCTS[product][company]}"
+    return f"{base_url}{endpoint}"
 
 
 def update_summary(summary: dict[str, list], product: str, company: str) -> None:
@@ -84,7 +84,8 @@ def main():
 
             # Checking Stock
             stock_checker = inventory.MicrocenterInventory()
-            site = get_product_pages(product, company)
+            base_url, endpoint = BASE_URL[company], PRODUCTS[product][company]
+            site = get_product_pages(base_url, endpoint)
             stock_checker.get_page(site)
             stock = stock_checker.in_stock
             if stock:
