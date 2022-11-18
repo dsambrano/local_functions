@@ -49,6 +49,7 @@ class Inventory(ABC):
 
 
 class MicrocenterInventory(Inventory):
+    # Also '"0 "' NEW IN STOCK: see https://www.microcenter.com/product/460968/raspberry-pi-3-model-b?storeid=101
     sold_out_text = "SOLD OUT"
     in_stock_text = "IN STOCK"
     soup_kwars = {"class_": "inventory"}
