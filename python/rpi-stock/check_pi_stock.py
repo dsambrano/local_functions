@@ -6,6 +6,7 @@ import sites
 import logging
 import inventory
 
+VERBOSE = False
 COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
 BASE_URL = sites.BASE_URL
@@ -64,8 +65,33 @@ def summary_text(summary: dict[str, list]) -> None:
         print(prod_text)
 
 
-def main():
+def verbose(stock: bool | None, product: str, company: str, site: str) -> None:
+    """TODO: Docstring for verbose.
+
+    Args:
+        stock (bool | None): A bool determining if product is in stock 
+        product (str): A product
+        compnay (str): A vendor
+        site (str): A vendors webpage for the product
+
+    Returns: Logs infomation to console
+
+    """
+    if stock is None:
+        print(f"Stock Status Unknown. Manually Check: {site}")
+        return None
+    article = "is" if stock else "is not"
+    stock_text = f"{product} {article} in stock at {company}"
+    stock_text = f"{stock_text}: {site}" if stock else stock_text
+    print(stock_text)
+
+
+def main(verbose_mode: bool):
     """main Check Raspberry Pi Stock at various Venders
+
+    Args: 
+        verbose_mode (bool): Bool indicating whether the scrapper should run in 
+            verbose mode.
 
     Returns: Creates log indicating Product Stock for Each Vender
 
@@ -93,15 +119,10 @@ def main():
                 update_summary(summary, product, company)
 
             # Logging Stock Status
-            if stock is None:
-                print(f"Stock Status Unknown. Manually Check: {site}")
-                continue
-            article = "is" if stock else "is not"
-            stock_text = f"{product} {article} in stock at {company}"
-            stock_text = f"{stock_text}: {site}" if stock else stock_text
-            print(stock_text)
+            if verbose_mode:
+                verbose(stock, product, company, site)
     summary_text(summary)
 
 
 if __name__ == "__main__":
-    main()
+    main(VERBOSE)
