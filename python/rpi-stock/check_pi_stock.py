@@ -11,6 +11,7 @@ COMPANIES = sites.COMPANIES
 PRODUCTS = sites.PRODUCTS
 BASE_URL = sites.BASE_URL
 SCRAPPERS = sites.SCRAPPERS
+SLEEP_TIME = 1
 exclude_companies = []
 
 
@@ -101,7 +102,7 @@ def main(verbose_mode: bool):
         pass
     for product in PRODUCTS:
         # Probably Good enough since I really don't expect the same site for multiple
-        time.sleep(3)  # Prevent issues of Rate Limiting
+        time.sleep(SLEEP_TIME)  # Prevent issues of Rate Limiting
         for company in PRODUCTS[product]:
             # if company in exclude_companies:
             if company != "microcenter":
