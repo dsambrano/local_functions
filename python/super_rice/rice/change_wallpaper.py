@@ -63,9 +63,11 @@ def change_wm_wallpaper(wallpaper: Path) -> None:
     Returns: None Changes Wallpaper For Tiling Window Mangagers using feh
 
     """
-    import os
-    os.environ["DISPLAY"] = ":0"
-    logging.warn(f"OS Vars: {os.getenv('DISPLAY')}")
+    # The problem was a lack of env in cron, I moved the content beelow to use the one line for exporting inside the crontab
+    #  https://superuser.com/a/1038538
+    # import os
+    # os.environ["DISPLAY"] = ":0"
+    # logging.warn(f"OS Vars: {os.getenv('DISPLAY')}")
     process = subprocess.run(["feh", "--bg-scale", str(wallpaper)], stdout=subprocess.PIPE)
     #output, error = process.communicate()
     logging.error(f"Output: {process}")
