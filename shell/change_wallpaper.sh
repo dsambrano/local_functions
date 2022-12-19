@@ -25,6 +25,15 @@ change_gnome_wallpaper() {
     gsettings set org.gnome.desktop.background $key "file://$pic"
 }
 
+change_linux_wallpaper(){
+    window_managers="awesome|i3" 
+    if pgrep $window_managers>/dev/null; then
+        feh --bg-scale $pic
+    else
+        change_gnome_wallpaper
+    fi
+}
+
 change_macos_wallpaper() {
     # https://lifehacker.com/set-your-macs-wallpaper-with-a-terminal-command-1728551470
     # Needs to be checked to see if I can replace single quotes so I can expand param else will need to use eval probably.
@@ -38,7 +47,7 @@ main() {
     OS=$(get_os)
     case $OS in
         *"Fedora"*)
-            change_gnome_wallpaper;;
+            change_linux_wallpaper;;
         *"Darwin"*)
             change_macos_wallpaper;;
     esac

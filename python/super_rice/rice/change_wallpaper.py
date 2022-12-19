@@ -3,8 +3,11 @@ import enum
 import re
 import subprocess
 import sys
+import logging
 
 from pywal.wallpaper import change
+
+logging.basicConfig(level=logging.DEBUG, filename='/home/buddy/wallpaper.log', filemode='w', format='%(asctime)s - %(levelname)s - %(message)s', datefmt="%Y-%-m-%d %H:%M:%S")
 
 
 class OS(enum.Enum):
@@ -27,6 +30,46 @@ def get_os() -> OS:
     # echo $XDG_CURRENT_DESKTOP
     return os
 
+def change_linux_wallpaper(wallpaper: Path) -> None:
+    """change_linux_wallpaper
+    Changes wallpaper for linux depending on DE. If you are using a Tiling 
+    Window Manager (e.g., i3, awesome), then it will use feh. Otherwise, it 
+    assumes you are using gnome, in which case it will use use gsettings for 
+    your preferred color theme (light or dark).
+
+    Args:
+        wallpaper (Path): A Path to a Wallpaper
+
+    Returns: None; Changes Wallpaper for Linux
+
+    """
+    window_managers = ["awesome", "i3"]
+    wm_regex = "|".join(window_managers)
+    commands = ["pgrep", wm_regex]
+    wm_ps = subprocess.run(commands, stdout=subprocess.PIPE, text=True)
+
+    if wm_ps.stdout:
+        change_wm_wallpaper(wallpaper)
+    else:
+        change_gnome_wallpaper(wallpaper)
+
+
+def change_wm_wallpaper(wallpaper: Path) -> None:
+    """TODO: Docstring for change_wm_wallpaper.
+
+    Args:
+        wallpaper (Path): A Path to a Wallpaper
+
+    Returns: None Changes Wallpaper For Tiling Window Mangagers using feh
+
+    """
+    import os
+    os.environ["DISPLAY"] = ":0"
+    logging.warn(f"OS Vars: {os.getenv('DISPLAY')}")
+    process = subprocess.run(["feh", "--bg-scale", str(wallpaper)], stdout=subprocess.PIPE)
+    #output, error = process.communicate()
+    logging.error(f"Output: {process}")
+    # logging.error(f"Execption", exec_info=True)
 
 def change_gnome_wallpaper(wallpaper: Path) -> None:
     """TODO: Docstring for change_gnome_wallpaper.
@@ -97,7 +140,7 @@ def get_wallpaper_function(os: OS) -> callable:
     """
     os_change_wallpaper = {
         OS.MAC.name: change_macos_wallpaper,
-        OS.FEDORA.name: change_gnome_wallpaper,
+        OS.FEDORA.name: change_linux_wallpaper,
     }
     return(os_change_wallpaper[os.name])
 
@@ -106,9 +149,9 @@ def main(wallpaper: Path):
     """TODO: Docstring for main.
 
     Args:
-        wallpaper (Path): TODO
+        wallpaper (Path): pathlib.Path file to be used a wallpaper
 
-    Returns: TODO
+    Returns: None, Update the Wallpaper for MacOS of Linux
 
     """
     os = get_os()
