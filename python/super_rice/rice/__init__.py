@@ -16,7 +16,8 @@ def random_wallpaper(wallpapers_dir: Path) -> Path:
 
     """
 
-    wallpapers = [x for x in wallpapers_dir.rglob("*.jpg")]
+    wallpaper_types = ["*.jpg", "*.png"]
+    wallpapers = [x for x in wallpapers_dir.rglob("|".join(wallpaper_types))]
     return wallpapers[random.randint(0, len(wallpapers) - 1)]
 
 
