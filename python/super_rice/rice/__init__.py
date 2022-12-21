@@ -17,6 +17,8 @@ def random_wallpaper(wallpapers_dir: Path) -> Path:
     """
 
     wallpaper_types = {"*.jpg", "*.png"}
+    # Probs should rearrange to use a tuple/set https://stackoverflow.com/a/57054058
+    # because it is (need to test?; should be) more performant
     wallpapers = []
     for img_type in wallpaper_types:
         wallpapers.extend([x for x in wallpapers_dir.rglob(img_type)])
