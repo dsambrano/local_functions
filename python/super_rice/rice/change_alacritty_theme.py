@@ -6,6 +6,7 @@ import re
 import pywal
 
 ALACRITTY_CONFIG = Path("~/.config/alacritty/alacritty.yml").expanduser()
+ALACRITTY_COLOR_CONFIG = Path("~/.config/alacritty/theme_imports.yml").expanduser()
 THEMES_DIR = ALACRITTY_CONFIG.parent / Path("themes/")
 THEME_TEXT = "~/.config/alacritty/themes/"  # Unique Pattern Inside alacritty config
 
@@ -52,7 +53,14 @@ def generate_pywall_theme(wallpaper: Path, template: Path, export_file: Path) ->
     pywal.export.color(colors, template, export_file)
 
 
-def regex_config(config: Path, new_pattern: str, old_pattern: str, **kwargs) -> None:
+def regex_config(
+    config: Path,
+    new_pattern: str,
+    old_pattern: str,
+    force_reload_config: bool = True,
+    alacritty_config: Path = Path("~/.config/alacritty/alacritty.yml").expanduser(),
+    **kwargs,
+) -> None:
     """TODO: Docstring for regex_config.
 
     Updates the Config File based on Regex Pattern provided.
@@ -71,6 +79,38 @@ def regex_config(config: Path, new_pattern: str, old_pattern: str, **kwargs) -> 
 
     with config.open("w") as f:
         f.write(new_content)
+
+    if force_reload_config:
+        force_reload_alacritty_config(alacritty_config)
+
+
+def force_reload_alacritty_config(config: Path) -> None:
+    """Docstring for force_reload_alacritty.
+
+    Forces the Alacritty config to be reloaded. This works based on
+    the fact that Alacritty autoreloads when it changes. This feature
+    is intended to allow you to have a separate theming file that is
+    updated with regex_config. Normally since that is a separate file
+    Alacritty would not reload the config file. This function solves
+    this problem by appending a blank line and then erasing it in the
+    alacritty config file. This is not intended to allow you to reload
+    alacritty without the live_config_reload: true option set in your
+    config file.
+
+    Args:
+        config (Path): A Path for a config file to be altered
+
+    Returns: None, just forces alacritty to reload the config
+
+    """
+    with config.open("r") as f:
+        content = f.read()
+
+    with config.open("w") as f:
+        f.write(content + "\n")
+
+    with config.open("w") as f:
+        f.write(content)
 
 
 def main(wallpaper: Path) -> None:
@@ -107,7 +147,7 @@ def main(wallpaper: Path) -> None:
         new_pattern = rf"\1{theme}\3"
 
     # Edit Alacritty config file
-    regex_config(ALACRITTY_CONFIG, new_pattern, old_pattern, count=1)
+    regex_config(ALACRITTY_COLOR_CONFIG, new_pattern, old_pattern, count=1)
 
 
 if __name__ == "__main__":
