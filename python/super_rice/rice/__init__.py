@@ -45,10 +45,8 @@ def main(wallpapers_dir: Path) -> None:
         print("Argument must be either a directory of only wallpapers or a wallpaper")
         exit(1)
 
-
     from rice import change_wallpaper
 
-    change_wallpaper.main(wallpaper)
     os = change_wallpaper.get_os()
     change_wallpaper = change_wallpaper.get_wallpaper_function(os)
     change_wallpaper(wallpaper)
