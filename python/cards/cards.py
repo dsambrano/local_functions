@@ -59,6 +59,7 @@ class Deck:
         else:
             string = "Deck is empty"
 
+        # https://pythonprogramminglanguage.com/text-to-speech/
         engine = pyttsx.init()
         engine.say(string)
         engine.runAndWait()
