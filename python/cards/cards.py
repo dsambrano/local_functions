@@ -2,7 +2,12 @@ import enum
 import itertools
 import random
 import time
-import pyttsx
+import subprocess
+import sys
+import select
+from gtts import gTTS
+
+# import pyttsx
 
 WAIT_TIME = 2
 
@@ -37,6 +42,18 @@ def suits_color(suit: CardSuits):
     return "BLACK" if suit in (CardSuits.SPADE, CardSuits.CLOVER) else "RED"
 
 
+def play_mp3(file: str):
+    subprocess.run(
+        ["mpg321", file], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
+    )
+
+
+def create_speech(string: str, filename: str = "pokeno.mp3"):
+    language = "en"
+    myobj = gTTS(text=string, lang=language, slow=False)
+    myobj.save(filename)
+
+
 class Deck:
     suits = (suit.name for suit in CardSuits)
     ranks = (rank.name for rank in CardRanks)
@@ -55,14 +72,20 @@ class Deck:
         if self.full_deck:
             card = self.get_top_card()
             color = suits_color(CardSuits[card[1]])
-            string = f"{color} {card[0]} of {card[1]}"
+            string = f"The {color} {card[0]} of {card[1]}."
+            print(string)
+            string = string * 2
         else:
             string = "Deck is empty"
 
-        # https://pythonprogramminglanguage.com/text-to-speech/
-        engine = pyttsx.init()
-        engine.say(string)
-        engine.runAndWait()
+        create_speech(string)
+        play_mp3("pokeno.mp3")
+        # subprocess.run(["say", string])
+
+        ##  https://pythonprogramminglanguage.com/text-to-speech/
+        # engine = pyttsx.init()
+        # engine.say(string)
+        # engine.runAndWait()
 
 
 def main():
