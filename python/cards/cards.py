@@ -44,8 +44,11 @@ def suits_color(suit: CardSuits):
 
 def input_timeout(time: int):
     i, o, e = select.select([sys.stdin], [], [], time)
-    input_text = sys.stdin.readline().strip()
-    print("You said: ", input_text)
+    if i:
+        input_text = sys.stdin.readline().strip()
+        print("You said: ", input_text)
+        return input_text
+    return None
 
 
 def play_mp3(file: str):
@@ -111,11 +114,22 @@ class Deck:
 def main():
     deck = Deck()
     deck.shuffle()
+    print("Starting New Game...")
+    print("\tQ for Quit")
+    print("\tP for Pause")
     while deck.full_deck:
         deck.play_card()
         deck.view_card()
         deck.read_card()
-        time.sleep(WAIT_TIME)
+        user_input = input_timeout(2)
+        if user_input == "q":
+            print("break")
+            break
+        elif user_input == "p":
+            print("pause")
+            test = input()
+            if test == "q":
+                break
     print("All Cards are gone, you should start a new game")
 
 
