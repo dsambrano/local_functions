@@ -78,15 +78,6 @@ class Deck:
     def get_bottom_card(self):
         return self.full_deck.pop(0)
 
-    def read_card(self):
-        if self.full_deck:
-            card = self.get_top_card()
-            color = suits_color(CardSuits[card[1]])
-            string = f"The {color} {card[0]} of {card[1]}."
-            print(string)
-            string = string * 2
-        else:
-            string = "Deck is empty"
     def make_all(self):
         rank, suit = self.current_card
         id = f"{CardRanks[rank].value}{CardSuits[suit].value}"
@@ -97,6 +88,15 @@ class Deck:
         print(string)
         create_speech(string * 2, file_path)
 
+    def read_card(self):
+        card = self.current_card
+        color = suits_color(CardSuits[card[1]])
+        string = f"The {color} {card[0]} of {card[1]}."
+        print(string)
+        rank, suit = self.current_card
+        id = f"{CardRanks[rank].value}{CardSuits[suit].value}"
+        file_path = f"audio/{id}.mp3"
+        play_mp3(file_path)
         # subprocess.run(["say", string])
 
         ##  https://pythonprogramminglanguage.com/text-to-speech/
