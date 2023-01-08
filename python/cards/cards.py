@@ -107,6 +107,7 @@ class Deck:
     def view_card(self):
         rank, suit = self.current_card
         id = f"{CardRanks[rank].value}{CardSuits[suit].value}"
+        # Images where obtained from Deck API: https://www.deckofcardsapi.com/
         file_path = f"imgs/{id}.png"
         os.system("osascript -e 'quit app \"/System/Applications/Preview.app\"'")
         os.system(f"open {file_path}")
