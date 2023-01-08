@@ -93,11 +93,27 @@ class Deck:
         # engine.say(string)
         # engine.runAndWait()
 
+    def view_card(self):
+        rank, suit = self.current_card
+        id = f"{CardRanks[rank].value}{CardSuits[suit].value}"
+        file_path = f"imgs/{id}.png"
+        os.system("osascript -e 'quit app \"/System/Applications/Preview.app\"'")
+        os.system(f"open {file_path}")
+
+    def play_card(self):
+        if self.full_deck:
+            self.current_card = self.get_top_card()
+        else:
+            print("Deck is Empty No More Cards")
+
+
 
 def main():
     deck = Deck()
     deck.shuffle()
     while deck.full_deck:
+        deck.play_card()
+        deck.view_card()
         deck.read_card()
         time.sleep(WAIT_TIME)
     print("All Cards are gone, you should start a new game")
