@@ -2,7 +2,8 @@
 
 import rice
 from pathlib import Path
+import os
 
-wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers/").expanduser()
-
-rice.main(wallpapers_dir)
+if os.system("gprep i3lock") != 265:
+    wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers/").expanduser()
+    rice.main(wallpapers_dir)
