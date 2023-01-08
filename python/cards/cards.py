@@ -42,6 +42,12 @@ def suits_color(suit: CardSuits):
     return "BLACK" if suit in (CardSuits.SPADE, CardSuits.CLOVER) else "RED"
 
 
+def input_timeout(time: int):
+    i, o, e = select.select([sys.stdin], [], [], time)
+    input_text = sys.stdin.readline().strip()
+    print("You said: ", input_text)
+
+
 def play_mp3(file: str):
     subprocess.run(
         ["mpg321", file], stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
