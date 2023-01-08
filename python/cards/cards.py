@@ -5,6 +5,7 @@ import time
 import subprocess
 import sys
 import select
+import os
 from gtts import gTTS
 
 # import pyttsx
@@ -86,9 +87,16 @@ class Deck:
             string = string * 2
         else:
             string = "Deck is empty"
+    def make_all(self):
+        rank, suit = self.current_card
+        id = f"{CardRanks[rank].value}{CardSuits[suit].value}"
+        file_path = f"audio/{id}.mp3"
+        card = self.current_card
+        color = suits_color(CardSuits[card[1]])
+        string = f"The {color} {card[0]} of {card[1]}."
+        print(string)
+        create_speech(string * 2, file_path)
 
-        create_speech(string)
-        play_mp3("pokeno.mp3")
         # subprocess.run(["say", string])
 
         ##  https://pythonprogramminglanguage.com/text-to-speech/
@@ -109,6 +117,12 @@ class Deck:
         else:
             print("Deck is Empty No More Cards")
 
+
+def make_all_cards():
+    deck = Deck()
+    while deck.full_deck:
+        deck.play_card()
+        deck.make_all()
 
 
 def main():
