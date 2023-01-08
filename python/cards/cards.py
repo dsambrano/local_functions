@@ -13,10 +13,10 @@ WAIT_TIME = 2
 
 
 class CardSuits(enum.Enum):
-    SPADE = "♠"
-    HEART = "♥"
-    DIAMOND = "♦"
-    CLOVER = "♣"
+    SPADE = "S"  # "♠"
+    HEART = "H"  # "♥"
+    DIAMOND = "D"  # "♦"
+    CLOVER = "C"  # "♣"
 
     def get_color(self):
         pass
@@ -32,7 +32,7 @@ class CardRanks(enum.Enum):
     SEVEN = 7
     EIGHT = 8
     NINE = 9
-    TEN = 10
+    TEN = 0
     JACK = "J"
     QUEEN = "Q"
     KING = "K"
