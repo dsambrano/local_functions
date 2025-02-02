@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     # Can add additional folder after ~/git_repos/ to allow me to split personal and work repos
-    selected=$(find ~/git_repos -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/git_repos ~/.config ~/.local/bin -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
