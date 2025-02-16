@@ -5,8 +5,8 @@ import random
 import re
 import pywal
 
-ALACRITTY_CONFIG = Path("~/.config/alacritty/alacritty.yml").expanduser()
-ALACRITTY_COLOR_CONFIG = Path("~/.config/alacritty/theme_imports.yml").expanduser()
+ALACRITTY_CONFIG = Path("~/.config/alacritty/alacritty.toml").expanduser()
+ALACRITTY_COLOR_CONFIG = Path("~/.config/alacritty/theme_imports.toml").expanduser()
 THEMES_DIR = ALACRITTY_CONFIG.parent / Path("themes/")
 THEME_TEXT = "~/.config/alacritty/themes/"  # Unique Pattern Inside alacritty config
 
@@ -58,7 +58,7 @@ def regex_config(
     new_pattern: str,
     old_pattern: str,
     force_reload_config: bool = True,
-    alacritty_config: Path = Path("~/.config/alacritty/alacritty.yml").expanduser(),
+    alacritty_config: Path = Path("~/.config/alacritty/alacritty.toml").expanduser(),
     **kwargs,
 ) -> None:
     """TODO: Docstring for regex_config.
@@ -126,11 +126,11 @@ def main(wallpaper: Path) -> None:
     """
     # Set Regex patterns
     new_pattern = rf"\1pywal\3"
-    old_pattern = rf"({THEME_TEXT})(.*)(.yml)"
+    old_pattern = rf"({THEME_TEXT})(.*)(.toml)"
 
     # Set Variables
-    export_file = Path("~/.config/alacritty/themes/pywal.yml").expanduser()
-    template = Path("~/.config/wal/templates/colors-alacritty.yml").expanduser()
+    export_file = Path("~/.config/alacritty/themes/pywal.toml").expanduser()
+    template = Path("~/.config/wal/templates/colors-alacritty.toml").expanduser()
     wallpapers_dir = Path("~/git_repos/dotfiles/wallpapers").expanduser()
 
     # Randomly select a Wallpaper from dir
